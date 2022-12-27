@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+  background: #f3f3f3;
+  font-family: 'Manjari', sans-serif;
+}
+a {
+  text-decoration: none;
+  color: #1da1f2;
+  transition: .5s ease;
+}
+a:hover {
+  color: #0080ff;
+}
+
+.form {
+  background: rgb(22,19,54, 0.9);
+  padding: 30px;
+  max-width: 600px;
+  border-radius: 4px;
+  margin:auto;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+.top-area {
+  list-style: none;
+  padding: 10px;
+  margin: 0 0 20px 0;
+}
+.top-area:after {
+  content:"";
+  display:block;
+  clear: both;
+}
+
+.top-area li a {
+    display: block;
+    text-decoration: none;
+    padding: 15px;
+    background: white;
+    color: #a0b3b0;
+    font-size: 20px;
+    float:none;
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    transition: .5s ease;
+}
+.top-area li a:hover {
+  background: #0080ff;
+  color: #ffffff;
+}
+
+ 
+.tab-content > div:last-child {
+  display:block;
+}
+ 
+h1 {
+  text-align: center;
+  color: #ffffff;
+  font-weight: 300;
+  margin: 0 0 40px;
+}
+label {
+  position-webkit-transform: translateY(6px);
+          transform: translateY(6px);
+  left: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  font-size: 22px;
+}
+label .req {
+  margin: 3px;
+  color:red;
+}
+label.active {
+  -webkit-transform: translateY(50px);
+          transform: translateY(50px);
+  left: 2px;
+  font-size: 14px;
+}
+label.active .req {
+  opacity: 0;
+}
+label.highlight {
+  color: #ffffff;
+}
+input, textarea {
+  font-size: 22px;
+  display: block;
+  width: 100%;
+  background:none;
+  background-image: white;
+  border: 2px solid #a0b3b0;
+  color: #ffffff;
+  border-radius: 3px;
+  transition: border-color .75s ease, box-shadow .75s ease;
+}
+input:focus, textarea:focus {
+  outline: 0;
+  border-color:#1da1f2;
+}
+textarea {
+  border: 2px solid #a0b3b0;
+  resize: horizontal;
+}
+.label-field {
+  position:relative;
+  margin-bottom: 40px;
+  width:50%;
+}
+.top-row:after {
+  content: "";
+  display: inline-block;
+  clear:both;
+}
+.top-row > div {
+  width: 50%;
+  margin-right: 0;
+}
+.top-row > div:last-child {
+  margin: 10px;
+}
+.button {
+  border: 2px;
+  outline: none;
+  border-radius: 5px;
+  border-color:white;
+  padding: 12px;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  background: #1da1f2;
+  color: #ffffff;
+  transition: all 0.5s ease;
+  -webkit-appearance: none;
+}
+.button:hover, .button:focus {
+  background: red;
+}
+.button-block {
+  display: block;
+  width: 50%;
+}
+.forgot {
+  margin-top: 20px;
+  text-align:center;
+}
+
+    </style>
+<body>
+<div class="form" align="center">
+      
+      <ul class="top-area">
+        <li class="tab active"><a href="#signup">Sign Up</a></li>
+        <li class="tab"><a href="#login">Log In</a></li>
+      </ul>
+      
+      <div class="tab-content">
+        <div id="signup">   
+          <h1>Sign Up for Free</h1>
+          
+           <form action="/" method="post">
+             <div class="top-row">
+            
+              <div class="label-field">
+                <label>First Name<span class="req">*</span></label>
+                <input type="text" required autocomplete="off" />
+              </div>
+        
+              <div class="label-field">
+                <label>Last Name<span class="req">*</span></label>
+                <input type="text"required autocomplete="off"/>
+              </div>
+          
+              <div class="label-field">
+                <label>Email Address<span class="req">*</span></label>
+                <input type="email"required autocomplete="off"/>
+              </div>
+          
+              <div class="label-field">
+                <label>Set A Password<span class="req">*</span></label>
+                <input type="password"required autocomplete="off"/>
+              </div>
+              <button type="submit" class="button button-block">Get Started</button>
+           </div>
+         </form>
+       </div>
+        <hr>
+      <div id="login">   
+        <h1>Welcome Back!</h1>
+          <form action="/" method="post">
+          
+            <div class="label-field">
+               <label>Email Address<span class="req">*</span></label>
+               <input type="email"required autocomplete="off"/>
+            </div>
+          
+            <div class="label-field">
+               <label>Password<span class="req">*</span></label>
+               <input type="password"required autocomplete="off"/>
+            </div>
+          
+            <p class="forgot"><a href="#">Forgot Password?</a></p>
+          
+            <button class="button button-block">Log In</button>
+          
+           </form>
+         </div>
+      </div> 
+    </div> 
+  </body>
+  <script>
+  $('.form').find('input, textarea').on('keyup blur focus', function (e) {
+	  
+	  var $this = $(this),
+	      label = $this.prev('label');
+	 
+		  if (e.type === 'keyup') {
+				if ($this.val() === '') {
+	          label.removeClass('active highlight');
+	        } else {
+	          label.addClass('active highlight');
+	        }
+	    } else if (e.type === 'blur') {
+	    	if( $this.val() === '' ) {
+	    		label.removeClass('active highlight'); 
+				} else {
+			    label.removeClass('highlight');   
+				}   
+	    } else if (e.type === 'focus') {
+	      
+	      if( $this.val() === '' ) {
+	    		label.removeClass('highlight'); 
+				} 
+	      else if( $this.val() !== '' ) {
+			    label.addClass('highlight');
+				}
+	    }
+	 
+	});
+	 
+	$('.tab a').on('click', function (e) {
+	  
+	  e.preventDefault();
+	  
+	  $(this).parent().addClass('active');
+	  $(this).parent().siblings().removeClass('active');
+	  
+	  target = $(this).attr('href');
+	 
+	  $('.tab-content > div').not(target).hide();
+	  
+	  $(target).fadeIn(600);
+	  
+	});
+  </script>
+</html>
